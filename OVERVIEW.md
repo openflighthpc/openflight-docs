@@ -10,9 +10,9 @@ There are a few different platform & stack managers utilised in this repo. A com
 
 |                           | Omnia | OpenFlight | OpenHPC |
 | :-----------------------: | :---: | :--------: | :-----: |
-| **Deploy OS to Hardware** |   Y   |     Y      |    ~    |
+| **Deploy OS to Hardware** |   Y   |     Y      |    Y    |
 | **Deploy OS to Cloud**    |   N   |     Y      |    N    |
-| **Configure Networking**  |   Y   |     Y      |    ~    |
+| **Configure Networking**  |   Y   |     Y      |    Y    |
 | **CentOS 7 Support**      |   Y   |     Y      |    Y    |
 | **Rocky 8 Support**       |   Y   |     Y      |    Y    |
 
