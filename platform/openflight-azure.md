@@ -6,8 +6,8 @@ An example _Cluster Skeleton_ on Azure, deployed using a bash script and some te
 
 ## Prepare Deployment Server
 
-- [Install Azure CLI]()
-- [Authenticate Azure CLI]()
+- [Install Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=dnf)
+- [Authenticate Azure CLI](https://docs.microsoft.com/en-us/cli/azure/get-started-with-azure-cli#how-to-sign-into-the-azure-cli)
 - Clone the OpenFlight Platform Examples
   ```shell
   git clone https://github.com/openflighthpc/platforms-examples
