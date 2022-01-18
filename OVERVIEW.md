@@ -27,6 +27,7 @@ Key:
 | :-----------------: | :---: | :--------: | :-----: |
 | **Shared Storage**  |   Y   |     Y      |    N    |
 | **User Management** |   Y   |     Y      |    N    |
+| **Internal DNS**    |   Y   |     Y      |    N    |
 | **Queue System**    |   Y   |     Y      |    Y    |
 | **HPC Environment** |   ~   |     Y      |    Y    |
 
