@@ -18,14 +18,22 @@ There are a few different platform & stack managers utilised in this repo. A com
 
 Key:
 - Y: Supported
-- ~: Partial Support
+- ~: Partial Support (may require third-party tools or additional content) 
 - N: Not Supported
-
 
 ## Stack
 
+|                     | Omnia | OpenFlight | OpenHPC |
+| :-----------------: | :---: | :--------: | :-----: |
+| **Shared Storage**  |   Y   |     Y      |    N    |
+| **User Management** |   Y   |     Y      |    N    |
+| **Queue System**    |   Y   |     Y      |    Y    |
+| **HPC Environment** |   ~   |     Y      |    Y    |
 
-
+Key:
+- Y: Supported
+- ~: Partial Support (may require third-party tools or additional content) 
+- N: Not Supported
 
 # Key Concepts 
 
