@@ -1,3 +1,7 @@
+# Prerequisites
+
+The stacks below are designed to be deployed to a _Cluster Skeleton_ that is designed as described in the key concepts in the front-page overview document. 
+
 # Available Stacks
 
 In this directory there is further information and configuration guides for the following stacks: 
