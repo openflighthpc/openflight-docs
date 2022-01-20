@@ -52,12 +52,15 @@ A _Deployment Server_ is assumed to:
 A _Cluster Skeleton_ is a minimally configured platform providing a base for the desired _HPC Stack_ to be deployed onto.
 
 A _Cluster Skeleton_ is assumed to consist of:
-- 1 OS (CentOS 7 or Rocky 8 Linux) with:
+- "Head Node" - 1 OS (CentOS 7 or Rocky 8 Linux) with:
     - External Network Access
     - Internal (Cluster Primary) Network Access
+    - Entries in `/etc/hosts` for itself and compute nodes
     - Network Storage (formatted & exported)
-- X OSes (CentOS 7 or Rocky 8 Linux) with:
+- "Compute Nodes" - X OSes (CentOS 7 or Rocky 8 Linux) with:
     - Internal (Cluster Primary) Network Access
+    - Entries in `/etc/hosts` for the head and all compute nodes
+- Consistent date & time across all nodes
 
 Examples for deploying a _Cluster Skeleton_ on multiple networks can be found in `platform/`.
 
