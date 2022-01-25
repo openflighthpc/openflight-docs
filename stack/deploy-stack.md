@@ -2,6 +2,8 @@
 order: 99
 ---
 
+# Deploy a Stack
+
 !!!warning
 This documentation will soon be broken down into modular chunks for the various components that make up a stack
 !!!
