@@ -15,9 +15,9 @@ The OpenFlight OpenHPC stack provides the StackHPC OpenHPC stack implementation 
   ```shell
   cd stacks-playbook
   ```
-- Initialise the OpenHPC role within the playbook
+- Initialise the submodules
   ```shell
-  git submodule init roles/stack-openhpc
+  git submodule update --init
   ```
 
 ## Configure Playbook
