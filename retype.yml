@@ -1,13 +1,24 @@
 input: .
 output: .retype
 url: docs.openflighthpc.org # Add your website address here
+favicon: static/openflighthpc-fav.ico
 branding:
   title: OpenFlightHPC
-  label: Docs
+  logo: static/openflighthpc-logo.png
 links:
 - text: Home
   link: https://openflighthpc.org
+  icon: home
+  target: blank
 - text: Repos
   link: https://github.com/openflighthpc
+  icon: code
+  target: blank
+- text: Discussion
+  link: https://community.openflighthpc.org
+  icon: comment-discussion
+  target: blank
+edit:
+  repo: https://github.com/openflighthpc/openflight-docs/edit/
 footer:
   copyright: "&copy; Copyright {{ year }}. All rights reserved."
