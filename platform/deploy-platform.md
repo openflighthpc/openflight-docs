@@ -55,6 +55,27 @@ Prepare your hardware as per the [Omnia Documentation](https://dellhpc.github.io
   cd platforms-example/azure
   ```
 
+==- :icon-duplicate: Importing an Image
+
+OpenFlight provides images for various cloud platforms, to see the available images for Azure in the OpenFlight storage account run:
+```shell
+az storage blob list --account-name openflightimages --container-name images --query "[].{Image:name}" --output table
+```
+
+One of the images above can be imported to the desired location in your account. The following example imports the image `CENTOS7-OPENFLIGHT-2022.1-2601221729_azure.vhd` into the resource group `myimages`:
+```shell
+az image create --resource-group myimages --name CENTOS7-OPENFLIGHT-2022.1-2601221729 --os-type Linux --source https://myclustercontent.blob.core.windows.net/images/CENTOS7-OPENFLIGHT-2022.1-2601221729_azure.vhd
+```
+
+!!!info Image Locaton
+The image is hosted in the `uksouth` location. After importing as above it can be copied to other regions (`westeurope` in this example) with the image-copy extension as follows:
+```shell
+az image copy --source-resource-group myimages --source-object-name CENTOS7-OPENFLIGHT-2022.1-2601221729 --target-location westeurope --target-resource-group myimages --cleanup
+```
+!!!
+
+===
+
 ## Configure Deployment Script
 
 - Set the variables in `deploy.sh`:
