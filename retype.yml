@@ -4,6 +4,7 @@ url: docs.openflighthpc.org # Add your website address here
 favicon: static/openflighthpc-fav.ico
 branding:
   title: OpenFlightHPC
+  label: v0.0.1
   logo: static/openflighthpc-logo.png
 links:
 - text: Home
