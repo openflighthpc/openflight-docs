@@ -92,7 +92,7 @@ az storage blob list --account-name openflightimages --container-name images --q
 
 One of the images above can be imported to the desired location in your account. The following example imports the image `CENTOS7-OPENFLIGHT-2022.1-2601221729_azure.vhd` into the resource group `myimages`:
 ```shell
-az image create --resource-group myimages --name CENTOS7-OPENFLIGHT-2022.1-2601221729 --os-type Linux --source https://myclustercontent.blob.core.windows.net/images/CENTOS7-OPENFLIGHT-2022.1-2601221729_azure.vhd
+az image create --resource-group myimages --name CENTOS7-OPENFLIGHT-2022.1-2601221729 --os-type Linux --source https://openflightimages.blob.core.windows.net/images/CENTOS7-OPENFLIGHT-2022.1-2601221729_azure.vhd
 ```
 
 !!!info Image Locaton
