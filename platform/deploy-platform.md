@@ -13,13 +13,35 @@ This documentation explains the initial configuration required for a platform in
 
 ## Prepare the hardware
 
-Prepare your hardware as per the [Omnia Documentation](https://dellhpc.github.io/omnia/INSTALL_OMNIA_CONTROL_PLANE.html).
+Prepare your hardware as per the [Omnia Documentation](https://dellhpc.github.io/omnia/INSTALL_OMNIA_CONTROL_PLANE.html) network diagram and ensure the following is configured as a minimum:
 
-## Prepare Controller
+- Data (pri) network setup connecting to a NIC on every node + the controller.
+- Management (mgt) network setup connecting the BMC on every node + a secondary nic on the controller.
+- External (ext) network connected to a third nic on the controller
+- iDRAC reset and configured to use dhcp and a user and password have been set consistently across all the nodes.
+- BIOS reset and configured to use PXE boot on the interface connected to the data (pri) network
 
-- Disable Selinux
-- Install the required dependancies `python3` and `ansible` as per the [Omnia Documentation](https://dellhpc.github.io/omnia/INSTALL_OMNIA_CONTROL_PLANE.html)
-- Clone the OpenFlight fork of Omnia
+Make a note of the MAC address for both the BMC and interface connected to the data network for every node.
+
+## Setup the Controller
+Ensure the controller is correctly setup, this will usually require configuring the following as a minimum:
+- Install the controller OS and ensure that sufficient partition sizes are configured.
+- Disable `Selinux`, `Network Manager` and if using Centos 8 / Rocky 8, install the `network-scripts` package.
+- Configure the data (pri) network interface with a static IP and correct subnet.
+- Configure the management (mgt) network interface with a static IP and correct subnet.
+- Configure the external (ext) network interface with either a static IP or dhcp as required by your external network.
+- Ensure a suitable hostname and timezone is configured.
+
+## Install requirements
+
+Install the required dependancies `python3` and `ansible`
+```shell
+yum install -y epel-release
+yum install -y python3 git
+pip3.6 install --upgrade pip
+python3.6 -m pip install ansible
+```
+Clone the OpenFlight fork of Omnia
   ```shell
   git clone git@github.com:openflighthpc/omnia.git
   cd omnia
@@ -27,11 +49,17 @@ Prepare your hardware as per the [Omnia Documentation](https://dellhpc.github.io
   ```
 
 ## Configure the deployment
-- Configure `omnia_config.yml` as per the [Omnia Documentation](https://dellhpc.github.io/omnia/INSTALL_OMNIA_CONTROL_PLANE.html)
-- Create `mapping_host_file.csv` and `mapping_device_file.csv` as per the [Omnia Documentation](https://dellhpc.github.io/omnia/INSTALL_OMNIA_CONTROL_PLANE.html)
-- Configure `control_plane/input_params/base_vars.yml` as per the [Omnia Documentation](https://dellhpc.github.io/omnia/INSTALL_OMNIA_CONTROL_PLANE.html)
-- Set the required variables in `control_plane/input_params/login_vars.yml`
+Configure the required options as per the [Omnia Documentation](https://dellhpc.github.io/omnia/INSTALL_OMNIA_CONTROL_PLANE.html). This will include as a minimum setting the correct parameters in the following files:
 
+- `omnia_config.yml`
+- `control_plane/input_params/base_vars.yml`
+- `control_plane/input_params/login_vars.yml`
+
+Configure the mapping files using the MAC addresses for your hardware.
+- `mapping_device_file.csv` - maps the BMC MAC address for each node to their respective management network IP.
+- `mapping_host_file.csv` - maps the Data network MAC address for each node to an IP, Hostname and Omnia role.
+
+Ensure these file are correctly referenced in `control_plane/input_params/base_vars.yml`
 
 ## Deploy Platform
 - Run the ansible playbook
