@@ -43,7 +43,7 @@ python3.6 -m pip install ansible
 ```
 Clone the OpenFlight fork of Omnia
   ```shell
-  git clone git@github.com:openflighthpc/omnia.git
+  git https://github.com/openflighthpc/omnia.git
   cd omnia
   git checkout release-1.1.1
   ```
@@ -55,11 +55,24 @@ Configure the required options as per the [Omnia Documentation](https://dellhpc.
 - `control_plane/input_params/base_vars.yml`
 - `control_plane/input_params/login_vars.yml`
 
-Configure the mapping files using the MAC addresses for your hardware.
-- `mapping_device_file.csv` - maps the BMC MAC address for each node to their respective management network IP.
-- `mapping_host_file.csv` - maps the Data network MAC address for each node to an IP, Hostname and Omnia role.
+Configure the mapping files using the MAC addresses for your hardware by creating the following files in your omnia directory.
 
-Ensure these file are correctly referenced in `control_plane/input_params/base_vars.yml`
+- `mapping_device_file.csv` - maps the BMC MAC address for each node to their respective management network IP.
+```
+00:00:0F:FD:E6:EC,10.11.1.1
+00:00:4F:CB:EE:64,10.11.2.1
+00:00:EC:6B:31:7E,10.11.3.1
+00:00:7F:7A:16:79,10.11.4.1
+```
+- `mapping_host_file.csv` - maps the Data network MAC address for each node to an IP, short hostname and Omnia role. The short hostname should not contain the following characters: , (comma), . (period) or _ (underscore).
+```
+00:00:37:75:ED:92,10.10.1.1,head1,manager
+00:00:1C:26:2D:40,10.10.2.1,login1,login_node
+00:00:73:FE:2F:50,10.10.3.1,storage1,nfs_node
+00:00:F1:79:D9:FA,10.10.4.1,node1,compute
+```
+
+Configure the full path to these files in `control_plane/input_params/base_vars.yml`
 
 ## Deploy Platform
 - Run the ansible playbook
