@@ -1,7 +1,8 @@
 ---
 order: 100
+label: 3\. Validate Platform
 ---
-# Prerequisites
+# Validate Platform
 
 Before deploying a stack it is essential to have the platform configured to meet the standards of the [Cluster Skeleton](../overview/cluster-skeleton.md).
 
