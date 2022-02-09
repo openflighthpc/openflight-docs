@@ -1,11 +1,12 @@
 ---
 order: 99
+label: 2\. Domain Services
 ---
-# Configure Cluster Services
+# 2. Domain Services
 
 ## Prerequisites
 
-To setup cluster services, you will need to have the following information for your platform:
+To setup domain services, you will need to have the following information for your platform:
 - `domain_name`: The FQDN for the internal subnet
 - `head_ip`: The IP address of the head node
 - `storage_ip`: The IP address of the storage node (note: in a simple setup, this can also be the head node)
@@ -18,7 +19,7 @@ It is expected that your platform at this point has:
 - External IP address obtained on the head node
 - Passwordless SSH from the `root` user on the controller to all nodes on the system
 
-## Deploy Cluster Services
+## Deploy Domain Services
 
 Below are some examples and guidelines for cluster service configuration.
 
