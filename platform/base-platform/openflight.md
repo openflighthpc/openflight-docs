@@ -41,7 +41,7 @@ The detailed review provides a breakdown of the OpenFlight experience in using t
 
 ### Platform Requirements
 
-Detail the hardware/platform requirements for the solution alongside the configuration used by us for testing.
+Due to the various platform deployment methods, any platform-specific setup is detailed in the relevant tab. 
 
 ### Our Setup Experience
 
