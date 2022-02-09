@@ -8,5 +8,5 @@ Before deploying a stack it is essential to have the platform configured to meet
 The configuration of a Cluster Skeleton can be verified from the controller by running the cluster skeleton validation playbook.
 
 !!!danger
-The Cluste Skeleton Validation playbook does not yet exist
+The Cluster Skeleton Validation playbook does not yet exist
 !!!
