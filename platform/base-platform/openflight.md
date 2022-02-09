@@ -45,7 +45,7 @@ Due to the various platform deployment methods, any platform-specific setup is d
 
 ### Our Setup Experience
 
-+++ Azure (OpenFlight)
++++ Azure
 
 ### Prepare Controller
 
