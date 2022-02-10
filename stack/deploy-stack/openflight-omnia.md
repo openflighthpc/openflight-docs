@@ -40,18 +40,17 @@ IPs)
 - Set the variables for your chosen storage (`roles/storage-TYPE/vars/main.yml`)
 - Set the variables for your chosen user management solution (`roles/users-TYPE/vars/main.yml`)
 
-Note: If network forwarding to the Internal (Cluster Primary) Network is not configured, Ansible can utilise SSH T
-unnels via the headnode as follows:
+!!!info Nodes Behind a Gateway / Controller Outside of Network
+If network forwarding to the Internal (Cluster Primary) Network is not configured, Ansible can utilise SSH Tunnels via the headnode as follows:
 ```
 node01    ansible_host=10.10.0.1 ansible_ssh_common_args='-o ProxyJump=10.10.0.1'
 ```
-If utilising the above, the remote user may need to be specified in the ProxyJump argument (e.g. `ProxyJump-root@1
-0.10.0.1`) and `sshpass` may be required on the _Deployment Server_. It may also be necessary to disable SSH Host
-Key Checking with `export ANSIBLE_HOST_KEY_CHECKING=false`.
+If utilising the above, the remote user may need to be specified in the ProxyJump argument (e.g. `ProxyJump-root@10.10.0.1`) and `sshpass` may be required on the _Deployment Server_. It may also be necessary to disable SSH Host Key Checking with `export ANSIBLE_HOST_KEY_CHECKING=false`.
+!!!
 
-Note: Using password authentication with SSH proxies introduces many teething issues with Ansible therefore it is
-recommended that all hosts in the _Cluster Skeleton_ have the public SSH key from the _Deployment Server_ in the r
-oot user's authorized_keys file.
+!!!warning SSH with Password
+Using password authentication with SSH proxies introduces many teething issues with Ansible therefore it is recommended that all hosts in the _Cluster Skeleton_ have the public SSH key from the _Deployment Server_ in the root user's authorized_keys file.
+!!!
 
 ## Deploy Stack
 
