@@ -27,6 +27,7 @@ The below details the existing and upcoming parts of the OpenFlight documentatio
   - [ ] Disaster Recovery & Change Control Recommendations
   - [ ] BlueBanquise Review
   - [ ] OpenHPC Review
+  - [ ] OpenStack Review
   - [x] Omnia Review
   - [x] OpenFlight Review
 - [ ] Stack
