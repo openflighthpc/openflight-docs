@@ -24,6 +24,7 @@ The below details the existing and upcoming parts of the OpenFlight documentatio
     - [ ] User Management - IPA
     - [ ] Storage Filesystem - Local + NFS
     - [ ] Storage Filesystem - Lustre
+  - [ ] Disaster Recovery & Change Control Recommendations
   - [ ] BlueBanquise Review
   - [ ] OpenHPC Review
   - [x] Omnia Review
