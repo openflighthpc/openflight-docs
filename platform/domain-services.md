@@ -25,9 +25,9 @@ Below are some examples and guidelines for cluster service configuration.
 
 ### Networking
 
-[!ref :icon-flame: Firewalls](cluster-services/firewall.md)
+[!ref :icon-flame: Firewalls](/platform/domain-services/firewall.md)
 
-[!ref :icon-arrow-switch: IP Forwarding & Masquerade](cluster-services/ip-forwarding-and-masquerade.md)
+[!ref :icon-arrow-switch: IP Forwarding & Masquerade](/platform/domain-services/ip-forwarding-and-masquerade.md)
 
-[!ref :icon-globe: DNS](cluster-services/dns.md)
+[!ref :icon-globe: DNS](/platform/domain-services/dns.md)
 
