@@ -29,7 +29,11 @@ The below details the existing and upcoming parts of the OpenFlight documentatio
   - [ ] OpenHPC Review
   - [ ] OpenStack Review
   - [x] Omnia Review
-  - [x] OpenFlight Review
+  - [ ] OpenFlight Procedures
+    - [ ] AWS
+    - [ ] Libvirt/KVM
+    - [ ] OpenStack
+    - [x] Azure
 - [ ] Stack
   - [ ] Cluster Validation Playbook Usage
   - [x] Initial OpenFlight Guide 
