@@ -1,53 +1,16 @@
-# Omnia (Dell)
+---
+order: 98
+---
 
-## Description
+# Use Case
 
-Omnia is a platform & stack deployment tool developed by Dell. It's specifically designed for deployment to Dell PowerEdge servers and provides all levels of deployment from provisioning iDRAC network information and configuring the BIOS to deploying kubernetes and SLURM across the cluster.
+## Our Use Case
 
-## Quick Review
-
-|    Category     |                                       Rating                                         |
-| :-------------: | :----------------------------------------------------------------------------------: |
-| Ease of Use     | :icon-star-fill: :icon-star-fill: :icon-star-fill: :icon-star: :icon-star:           |
-| Customisability | :icon-star-fill: :icon-star: :icon-star: :icon-star: :icon-star:                     |
-| Adding Nodes    | :icon-star: :icon-star: :icon-star: :icon-star: :icon-star:                          |
-| Debuggability   | :icon-star-fill: :icon-star-fill: :icon-star: :icon-star: :icon-star:                |
-
-
-- **Ease of Use:** How intuitive the solution is to obtain, configure & launch
-- **Customisability:** The extent to, and simplicity of, which the solution can be modified to suit a desired deployment
-- **Adding Nodes:** How achievable it is to add nodes to a live/existing system with the solution
-- **Debuggability:** How possible it is to identify reasons for deployment failure
-
-### Ease of Use
-
-Gathering the tools required is pretty straightforward and the initial configuration of the variables for the playbook is also fairly well documented. The various steps to configure and run the tool are documented on the [Omnia website](https://dellhpc.github.io/omnia/) along with hardware requirements and explanations of other prerequisites the solution expects.
-
-Additionally, a playbook is provided for configuring the "Control Plane" (similar to the OpenFlight concept of a Controller or OpenHPC's Master).
-
-### Customisability
-
-The playbook is broken down into various roles for the different elements in the cluster. However, these roles have some interroped dependencies and, while there are tags on most tasks, it seems that some tagging is missing for roles so being able to voluntarily skip non-essential elements of the configuration can be tricky.
-
-### Adding Nodes
-
-At OpenFlight, we had a fair bit of difficulty deploying the initial platform of a cluster that has led us to believe that it would be difficult to configure additional hardware further down the line.
-
-### Debuggability
-
-Initially it can be difficult to know exactly what went wrong in a run of the playbook, this is due to the debug output being disabled for most tasks so stdout & stderr from failing commands is not immediately available. Furthermore, the complexity added by the layers of the control plane deployment (namely the various layers of abstraction through usage of playbooks, kubernetes deployment containers and cobbler) means that locating exactly where something went wrong is unintuitive and can be buried behind abstractions of playbooks run within playbooks.
-
-## Detailed Review
-
-The detailed review provides a breakdown of the OpenFlight experience in using this solution.
-
-### Our Use Case
-
-#### Software Version
+### Software Version
 
 The v1.1.1 release of Omnia was used. With limited success getting the release to run OpenFlight forked and modified Omnia to add additional tags and customisation. This modification of Omnia can be found [here](https://github.com/openflighthpc/omnia/tree/dev/deployment-updates-v1.1.1).
 
-#### Hardware Used
+### Hardware Used
 
 The hardware used for this platform deployment was:
 
@@ -55,9 +18,9 @@ The hardware used for this platform deployment was:
 - 3 x Dell PowerEdge R6525 - used for the `controller`, `login` and `compute` nodes.
 - 1 x Access Switch - configured with VLANs for separate `Data` and `Management` networks
 
-### Our Setup Experience
+## Our Setup Experience (Platform Deployment)
 
-#### Prepare the hardware
+### Prepare the hardware
 
 Prepare your hardware as per the [Omnia Documentation](https://dellhpc.github.io/omnia/INSTALL_OMNIA_CONTROL_PLANE.html) network diagram and ensure the following is configured as a minimum:
 
@@ -69,7 +32,7 @@ Prepare your hardware as per the [Omnia Documentation](https://dellhpc.github.io
 
 Make a note of the MAC address for both the BMC and interface connected to the data network for every node.
 
-#### Setup the Controller
+### Setup the Controller
 Ensure the controller is correctly setup, this will usually require configuring the following as a minimum:
 - Install the controller OS and ensure that sufficient partition sizes are configured.
 - Disable `Selinux`, `Network Manager` and if using Centos 8 / Rocky 8, install the `network-scripts` package.
@@ -82,7 +45,7 @@ Ensure the controller is correctly setup, this will usually require configuring 
 We would recommend setting up the controller as a libvirt VM. This allowed us to create snapshots of the controller  at various stages and aided in recovery in the event of deployment issues.
 !!!
 
-#### Install requirements
+### Install requirements
 
 Install the required dependancies `python3` and `ansible`
 ```shell
@@ -98,7 +61,7 @@ Clone the OpenFlight fork of Omnia
   git checkout release-1.1.1
   ```
 
-#### Configure the deployment
+### Configure the deployment
 Configure the required options as per the [Omnia Documentation](https://dellhpc.github.io/omnia/INSTALL_OMNIA_CONTROL_PLANE.html). This will include as a minimum setting the correct parameters in the following files:
 
 - `omnia_config.yml`
@@ -124,13 +87,74 @@ Configure the mapping files using the MAC addresses for your hardware by creatin
 
 Configure the full path to these files in `control_plane/input_params/base_vars.yml`
 
-#### Deploy Platform
+### Deploy Platform
 - Run the ansible playbook
   ```shell
   cd control_plane
   ansible-playbook control_plane.yml
   ```
 
-### Conclusion
+## Our Setup Experience (Stack Only)
 
-In conclusion, it took a lot of battling with hardware and resetting of the control plane when changes were made or failure conditions were hit for various different reasons in order to get the initial OS deployed to the nodes.
+When deploying the full stack, due to intermittent issues with OS deployment/build there was often a failure to deploy the stack. Even with the components up as expected there are some parts of the implementation that do not work as expected.
+
+An OpenFlight fork of Omnia exists that does a minimal stack deployment of both the Kubernetes and SLURM services as configured by Dell. This stack method does not include the setting up of IPA or changing of system firewalls.
+
+### Prepare Controller
+
+- Install Ansible
+- Clone Repository
+  ```shell
+  git clone https://github.com/openflighthpc/stacks-playbook
+  ```
+- Navigate into the repo
+  ```shell
+  cd stacks-playbook
+  ```
+- Initialise the submodules
+  ```shell
+  git submodule update --init
+  ```
+
+### Configure Playbook
+
+- Create Inventory File (IP specification is only required if DNS is not setup on the _Deployment Server_ for the
+IPs)
+  ```shell
+  cat << EOF > myclusterinventory
+  [head]
+  head1    ansible_host=10.10.0.1
+
+  [nodes]
+  node01    ansible_host=10.10.1.1
+  node02    ansible_host=10.10.1.2
+  node03    ansible_host=10.10.1.3
+  node04    ansible_host=10.10.1.4
+  EOF
+  ```
+- Set the variables in `group_vars/all`:
+  - `cluster_name`: The name to be assigned to the cluster
+  - `compute_ip_range`: The IP network and netmask for the Internal (Cluster Primary) Network
+  - `head_ip`: The IP address of the head node on the Internal (Cluster Primary) Network
+  - [OPTIONAL] `storage_ip`: The IP address of the storage node on the Internal (Cluster Primary) Network. If left blank then the head node will be configured as a storage node
+- Set the variables for your chosen storage (`roles/storage-TYPE/vars/main.yml`)
+- Set the variables for your chosen user management solution (`roles/users-TYPE/vars/main.yml`)
+
+!!!info Nodes Behind a Gateway / Controller Outside of Network
+If network forwarding to the Internal (Cluster Primary) Network is not configured, Ansible can utilise SSH Tunnels via the headnode as follows:
+```
+node01    ansible_host=10.10.0.1 ansible_ssh_common_args='-o ProxyJump=10.10.0.1'
+```
+If utilising the above, the remote user may need to be specified in the ProxyJump argument (e.g. `ProxyJump-root@10.10.0.1`) and `sshpass` may be required on the _Deployment Server_. It may also be necessary to disable SSH Host Key Checking with `export ANSIBLE_HOST_KEY_CHECKING=false`.
+!!!
+
+!!!warning SSH with Password
+Using password authentication with SSH proxies introduces many teething issues with Ansible therefore it is recommended that all hosts in the _Cluster Skeleton_ have the public SSH key from the _Deployment Server_ in the root user's authorized_keys file.
+!!!
+
+### Deploy Stack
+
+- Run Playbook
+  ```shell
+  ansible-playbook -i myclusterinventory --extra-vars "storage=TYPE user_mgmt=TYPE stack=omnia" main.yml
+  ```

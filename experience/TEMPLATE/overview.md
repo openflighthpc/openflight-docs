@@ -1,4 +1,8 @@
-# Solution Name
+---
+order: 99
+---
+
+# Overview
 
 ## Description
 
@@ -9,7 +13,7 @@ A general description and overview of the solution with links to relevant websit
 |    Category     |                                       Rating                                         |
 | :-------------: | :----------------------------------------------------------------------------------: |
 | Ease of Use     | :icon-star-fill: :icon-star-fill: :icon-star-fill: :icon-star-fill: :icon-star-fill: |
-| Customisability | :icon-star-fill: :icon-star-fill: :icon-star-fill: :icon-star: :icon-star:           | 
+| Customisability | :icon-star-fill: :icon-star-fill: :icon-star-fill: :icon-star: :icon-star:           |
 | Adding Nodes    | :icon-star-fill: :icon-star-fill: :icon-star: :icon-star: :icon-star:                |
 | Debuggability   | :icon-star-fill: :icon-star-fill: :icon-star-fill: :icon-star-fill: :icon-star:      |
 
@@ -31,18 +35,3 @@ A general description and overview of the solution with links to relevant websit
 ### Debuggability
 
 
-## Detailed Review
-
-The detailed review provides a breakdown of the OpenFlight experience in using this solution.
-
-### Platform Requirements
-
-Detail the hardware/platform requirements for the solution alongside the configuration used by us for testing.
-
-### Our Setup Experience
-
-A part-guide, part-review breakdown of the steps used, issues hit and things worth considering when using this solution.
-
-### Conclusion
-
-A paragraph summising the experience. 
