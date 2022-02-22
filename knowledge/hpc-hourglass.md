@@ -11,7 +11,7 @@ The breakdown of a cluster into these stages allows for modular cluster building
 
 ### 1. Hosts, Disks & Networking 
 
-Examples: Bare Metal, Libvirt/KVM/Ovirt, VMWare, OpenStack, AWS, Azure
+_Examples: Bare Metal, Libvirt/KVM/Ovirt, VMWare, OpenStack, AWS, Azure_
 
 This area covers the choice of hardware configuration for the cluster. It may be that physical servers are used as-is or as a base for virtualisation services. It's also an option to use public and private cloud services to probide the basis for hosts, disks and networks. 
 
@@ -32,7 +32,7 @@ The above types are not strict. Services can be mixed, matched and moved around 
 
 ### 2. OS
 
-Examples: CentOS 7, RHEL 7, Rocky 8, RHEL 8
+_Examples: CentOS 7, RHEL 7, Rocky 8, RHEL 8_
 
 The Operating System choice is dependent on the desired workflow and services for the cluster. It is worth considering the end-user's requirements for a workload and identify the most suitable operating system for this. 
 
@@ -40,7 +40,7 @@ RedHat and it's derivatives are often used in clusters as they have a lot of sup
 
 ### 3. Deployment Tool
 
-Examples: Cobbler/Kubernetes, OpenStack, xCAT/Warewulf, ARM Template, AWS CloudFormation, OpenStack Heat Template, Redhat CloudForms, Terraform
+_Examples: Cobbler/Kubernetes, OpenStack, xCAT/Warewulf, ARM Template, AWS CloudFormation, OpenStack Heat Template, Redhat CloudForms, Terraform_
 
 Deployment tools can assist in deploying many systems with varying profiles dependent on grouping. This allows for centralised configuration & management of the cluster build process while minimising the labour required to configure many systems in a similar manner. 
 
@@ -48,13 +48,13 @@ Deployment tools can assist in deploying many systems with varying profiles depe
 
 #### 4.1. IP Allocation
 
-Examples: Static, DHCP
+_Examples: Static, DHCP_
 
 IP Allocation covers the configuration of network interfaces on the platform. Ensuring that nodes have suitable IPs on the chosen networks, correct network routing to reach the external network and NTP contacting a suitable endpoint. 
 
 #### 4.2. DNS
 
-Examples: /etc/hosts, DNSmasq, IPA
+_Examples: /etc/hosts, DNSmasq, IPA_
 
 Name resolution in the cluster is important for cluster communication. This can either be handled with a simple configuraiton (through adding host entires to `/etc/hosts` across the cluster) or by configuring a centralised service (such as DNSmasq or IPA) to provide hostname information to the cluster.
 
@@ -64,7 +64,7 @@ It is worth considering:
 
 #### 4.3. User Management
 
-Example: NIS, IPA
+_Example: NIS, IPA_
 
 User authentication is usually performed in a server/client setup inside the HPC environment due to the unnecessary overhead of manually maintaining /etc/passwd on a network of nodes.
 
@@ -75,7 +75,7 @@ Some options for User Management:
 
 #### 4.4. Storage Filesystem
 
-Examples: Ceph, Lustre, GPFS, BGFS
+_Examples: Ceph, Lustre, GPFS, BGFS_
 
 Storage Filesystems are an important consideration to ensure that user data is safe and accessible. It is worth considering the level of redundancy provided by storage solutions as well as the performance of the filesystem types.
 
@@ -99,7 +99,7 @@ Some considerations for Storage Filesystems:
 
 #### 4.5. Storage Share
 
-Examples: NFS, Lustre
+_Examples: NFS, Lustre_
 
 The Storage Share determines how the Storage Filesystem is accessed by nodes in the cluster. The choice of share can impact the performance of data read and write. 
 
@@ -111,19 +111,19 @@ Some things to consider:
 
 ### 1. Management
 
-Examples: Ganglia, Nagios, Zabbix, Grafana/Prometheus
+_Examples: Ganglia, Nagios, Zabbix, Grafana/Prometheus_
 
 For monitoring and identifying issues with the cluster it is recommended to have some form of management software configured that'll collect statistics and perform checks on the nodes. There are many options of both active and passive management tools which can be configured for the cluster, consider the options out there alongside the functionality provided.
 
 ### 2. HPC Services
 
-Examples: Conda, EasyBuild, Modules, Singularity, Spack, Docker
+_Examples: Conda, EasyBuild, Modules, Singularity, Spack, Docker_
 
 HPC Services determine how software and libraries are acquired for users. There are multiple options from software ecosystems (like Conda and EasyBuild) to containerised solutions (like Docker and Singularity). While a lot of software can be installed from precompiled binaries (or directly compiled for the host OS) it may be that containerised solutions are required for certain workloads. 
 
 ### 3. Workload
 
-Examples: Torque, SLURM, Kubernetes, Jupyter
+_Examples: Torque, SLURM, Kubernetes, Jupyter_
 
 Workload management tools allow for the allocation of resources to users and can additionally provide fine-tuned resource allocation with quotas and resource separation. 
 

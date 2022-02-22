@@ -12,7 +12,7 @@ A platform is the base of a cluster. The hardware, virtualisation or cloud back-
 
 ## Stack
 
-Also known as: Cluster
+_Also known as: Cluster_
 
 A stack usually refers to the entire HPC system - the platform, domain services and HPC services that create the environment for a user to create, analyse and run workloads.
 
@@ -20,7 +20,7 @@ In other contexts a stack can refer to the HPC services alone that turn a config
 
 ## Controller 
 
-Also known as: Management Node, Control Plane
+_Also known as: Management Node, Control Plane_
 
 A controller is the server used for deployment of the platform and stack. This server provides a centralised location to manage the cluster. It is usually attached to the cluster network and is detached from user management services such that only admins can access it.  
 
