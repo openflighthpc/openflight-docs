@@ -13,7 +13,7 @@ The breakdown of a cluster into these stages allows for modular cluster building
 
 _Examples: Bare Metal, Libvirt/KVM/Ovirt, VMWare, OpenStack, AWS, Azure_
 
-This area covers the choice of hardware configuration for the cluster. It may be that physical servers are used as-is or as a base for virtualisation services. It's also an option to use public and private cloud services to probide the basis for hosts, disks and networks. 
+This area covers the choice of hardware configuration for the cluster. It may be that physical servers are used as-is or as a base for virtualisation services. It's also an option to use public and private cloud services to provide the basis for hosts, disks and networks. 
 
 When selecting the base for hosts, disks and networks it's worth considering:
 - The desired size of the cluster (smaller workloads may be better suited to cloud platforms)
