@@ -11,10 +11,6 @@ links:
   link: https://community.openflighthpc.org
   icon: comment-discussion
   target: blank
-- text: Repos
-  link: https://github.com/openflighthpc
-  icon: code
-  target: blank
 edit:
   repo: https://github.com/openflighthpc/openflight-docs/edit/
 exclude:
